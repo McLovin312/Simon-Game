@@ -3,7 +3,7 @@ var gamePattern = [];
 var userClickedPattern = [];
 
 //AUDIO
-function addAudio(id){
+function playSound(id){
     switch(id){
             case "green":
                 var audio = new Audio("./sounds/green.mp3");
@@ -40,11 +40,16 @@ function nextSequence(){
 
     $("#"+ randomChosenColor).animate({ opacity: 0.2 }, 100).animate({ opacity: 1 }, 100);
 
-    addAudio(randomChosenColor);
+    playSound(randomChosenColor);
 }
 
 $(".btn").on("click", function(){
     var userChosenColor = this.id;
     userClickedPattern.push(userChosenColor);
-    console.log(userClickedPattern);
+
+    //Animate box and add sound for user input as well. 
+    $("#"+ this.id).animate({ opacity: 0.2 }, 100).animate({ opacity: 1 }, 100);
+
+    playSound(this.id);
+    
 });
