@@ -63,11 +63,26 @@ function checkAnswer(currentLevel) {
   } else {
     var audio = new Audio("./sounds/wrong.mp3");
     audio.play();
+
+    setTimeout(function(){
+    var audio = new Audio("./sounds/vine-boom.mp3");
+    audio.play();}, 100);
+
+    setTimeout(function(){
+    var audio = new Audio("./sounds/vine-boom.mp3");
+    audio.play();}, 200);
+
+    setTimeout(function(){
+    var audio = new Audio("./sounds/vine-boom.mp3");
+    audio.play();}, 300);
+
+
     $("body").addClass("game-over");
     setTimeout(function () {
       $("body").removeClass("game-over");
     }, 200);
-    $("h1").text("Game Over, Press Any Key to Restart");
+    $("h1").text("Game Over, Press Any Key to Restart.");
+    $("h1").
     startOver();
   }
 }
