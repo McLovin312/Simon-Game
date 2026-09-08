@@ -8,11 +8,12 @@ var insults = [
   "Bro got zero rizz and even less memory. L + ratio.",
   "Skill issue. You really got diffed by four colored buttons?",
   "Bro got cooked by a pattern game... absolute negative aura.",
-  "Bro failed on level " + level + ". Blud is not Him.",
+  "Bro failed on level " + level + ". Bro is not Him.",
   "Bait used to be believable. Your gameplay is straight up cooked.",
   "Bro got CTE playing a Simon game. Go touch grass.",
   "Bro dropped their aura into the shadow realm with that click.",
   "Is your brain running on 2G? Uncanny level performance.",
+  "You are not in the green FN"
 ];
 
 function animatePress(currentColor) {
