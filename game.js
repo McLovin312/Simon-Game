@@ -4,6 +4,17 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
+var insults = [
+  "Bro got zero rizz and even less memory. L + ratio.",
+  "Skill issue. You really got diffed by four colored buttons?",
+  "Bro got cooked by a pattern game... absolute negative aura.",
+  "Bro failed on level " + level + ". Blud is not Him.",
+  "Bait used to be believable. Your gameplay is straight up cooked.",
+  "Bro got CTE playing a Simon game. Go touch grass.",
+  "Bro dropped their aura into the shadow realm with that click.",
+  "Is your brain running on 2G? Uncanny level performance.",
+];
+
 function animatePress(currentColor) {
   $("#" + currentColor)
     .animate({ opacity: 0.2 }, 100)
@@ -14,7 +25,6 @@ function animatePress(currentColor) {
   }, 100);
 }
 
-// AUDIO
 function playSound(name) {
   var audio = new Audio("./sounds/" + name + ".mp3");
   audio.play();
@@ -50,6 +60,7 @@ function checkAnswer(currentLevel) {
 
     setTimeout(function () {
       clearInterval(vineBoomInterval);
+      $(".insult-banner").remove();
     }, 3000);
 
     $("body").addClass("game-over");
@@ -58,7 +69,15 @@ function checkAnswer(currentLevel) {
     }, 200);
 
     $("h1").text("Game Over, Press Any Key to Restart.");
-    
+
+    var randomInsult = insults[Math.floor(Math.random() * insults.length)];
+    $(".insult-banner").remove();
+    $("body").append(
+      '<div class="insult-banner" style="position:fixed;top:20px;left:0;right:0;text-align:center;background:red;color:white;padding:15px;font-size:24px;font-weight:bold;z-index:9999;">' +
+        randomInsult +
+        "</div>",
+    );
+
     startOver();
   }
 }
@@ -82,6 +101,8 @@ $(".btn").on("click", function () {
 });
 
 $(document).on("keydown", function () {
+  $(".insult-banner").remove();
+
   if (!started) {
     $("h1").text("Level " + level);
     nextSequence();
