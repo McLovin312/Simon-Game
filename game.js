@@ -45,17 +45,32 @@ function nextSequence(){
     gamePattern.push(randomChosenColor);
     console.log(gamePattern);
 
-
     animatePress(randomChosenColor)
     playSound(randomChosenColor);
+
+    level++;
+    $("h1").text("level " + level);
 }
+
 
 $(".btn").on("click", function(){
     var userChosenColor = this.id;
     userClickedPattern.push(userChosenColor);
-
     //Animate box and add sound for user input as well. 
     animatePress(this.id)
     playSound(this.id);
+
     
+});
+
+var started = false;
+var level = 0;
+
+$(document).on("keydown", function(e){
+    if(started === false){
+        $("h1").text("level 0")
+        nextSequence();
+        started = true;
+
+    }
 });
