@@ -2,6 +2,13 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 
+function animatePress(currentColor){
+    $("#"+ currentColor).animate({ opacity: 0.2 }, 100).animate({ opacity: 1 }, 100);
+    $("#"+ currentColor).addClass("pressed");
+    setTimeout(function(){
+        $("#"+ currentColor).removeClass("pressed")}, 100);
+}
+
 //AUDIO
 function playSound(id){
     switch(id){
@@ -38,8 +45,8 @@ function nextSequence(){
     gamePattern.push(randomChosenColor);
     console.log(gamePattern);
 
-    $("#"+ randomChosenColor).animate({ opacity: 0.2 }, 100).animate({ opacity: 1 }, 100);
 
+    animatePress(randomChosenColor)
     playSound(randomChosenColor);
 }
 
@@ -48,8 +55,7 @@ $(".btn").on("click", function(){
     userClickedPattern.push(userChosenColor);
 
     //Animate box and add sound for user input as well. 
-    $("#"+ this.id).animate({ opacity: 0.2 }, 100).animate({ opacity: 1 }, 100);
-
+    animatePress(this.id)
     playSound(this.id);
     
 });
