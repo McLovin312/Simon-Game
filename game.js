@@ -66,6 +66,7 @@ function checkAnswer(currentLevel) {
   } else {
     playSound("wrong");
     playSound("no");
+    playSound("fah");
 
     var vineBoomInterval = setInterval(function () {
       var vineAudio = new Audio("./sounds/vine-boom.mp3");
