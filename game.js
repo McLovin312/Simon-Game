@@ -14,7 +14,6 @@ function getInsult(currentLevel) {
     "Bro got CTE playing a Simon game. Go touch grass.",
     "Bro dropped their aura into the shadow realm with that click.",
     "Is your brain running on 2G? Uncanny level performance.",
-    "You are not in the green FN",
     "Bro is getting speedran by Simon. Quiet down, fanum tax incoming.",
     "My guy is playing like he's on 999 ping with no hands.",
     "Bro lost on level " + currentLevel + " and thought nobody would notice. We all saw.",
