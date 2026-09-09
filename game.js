@@ -4,17 +4,29 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
-var insults = [
-  "Bro got zero rizz and even less memory. L + ratio.",
-  "Skill issue. You really got diffed by four colored buttons?",
-  "Bro got cooked by a pattern game... absolute negative aura.",
-  "Bro failed on level " + level + ". Bro is not Him.",
-  "Bait used to be believable. Your gameplay is straight up cooked.",
-  "Bro got CTE playing a Simon game. Go touch grass.",
-  "Bro dropped their aura into the shadow realm with that click.",
-  "Is your brain running on 2G? Uncanny level performance.",
-  "You are not in the green FN"
-];
+function getInsult(currentLevel) {
+  var insults = [
+    "Bro got zero rizz and even less memory. L + ratio.",
+    "Skill issue. You really got diffed by four colored buttons?",
+    "Bro got cooked by a pattern game... absolute negative aura.",
+    "Bro failed on level " + currentLevel + ". Bro is not Him.",
+    "Bait used to be believable. Your gameplay is straight up cooked.",
+    "Bro got CTE playing a Simon game. Go touch grass.",
+    "Bro dropped their aura into the shadow realm with that click.",
+    "Is your brain running on 2G? Uncanny level performance.",
+    "You are not in the green FN",
+    "Bro is getting speedran by Simon. Quiet down, fanum tax incoming.",
+    "My guy is playing like he's on 999 ping with no hands.",
+    "Bro lost on level " + currentLevel + " and thought nobody would notice. We all saw.",
+    "Bro's brain completely folded under the pressure of red, blue, green, and yellow.",
+    "Even CaseOh couldn't eat this many Ls.",
+    "NPC behavior. You literally have the memory retention of a wet paper towel.",
+    "Bro got hit with the ultimate memory diff. Pack it up, unc.",
+    "Bro really stared at four glowing squares and chose wrong. Unfortunate.",
+    "Bro is strictly ornamental. Zero utility detected."
+  ];
+  return insults[Math.floor(Math.random() * insults.length)];
+}
 
 function animatePress(currentColor) {
   $("#" + currentColor)
@@ -53,6 +65,7 @@ function checkAnswer(currentLevel) {
     }
   } else {
     playSound("wrong");
+    playSound("no");
 
     var vineBoomInterval = setInterval(function () {
       var vineAudio = new Audio("./sounds/vine-boom.mp3");
@@ -70,13 +83,15 @@ function checkAnswer(currentLevel) {
     }, 200);
 
     $("h1").text("Game Over, Press Any Key to Restart.");
+    $("h2").show();
+    $("h3").show();
 
-    var randomInsult = insults[Math.floor(Math.random() * insults.length)];
+    var randomInsult = getInsult(level);
     $(".insult-banner").remove();
     $("body").append(
       '<div class="insult-banner" style="position:fixed;top:20px;left:0;right:0;text-align:center;background:red;color:white;padding:15px;font-size:24px;font-weight:bold;z-index:9999;">' +
         randomInsult +
-        "</div>",
+        "</div>"
     );
 
     startOver();
@@ -106,6 +121,8 @@ $(document).on("keydown", function () {
 
   if (!started) {
     $("h1").text("Level " + level);
+    $("h2").hide();
+    $("h3").hide();
     nextSequence();
     started = true;
   }
