@@ -51,8 +51,13 @@ function nextSequence() {
   var randomChosenColor = buttonColours[randomNumber];
   gamePattern.push(randomChosenColor);
 
-  animatePress(randomChosenColor);
-  playSound(randomChosenColor);
+  for (let i = 0; i < gamePattern.length; i++){
+     setTimeout(function(){
+        animatePress(gamePattern[i]);
+        playSound(gamePattern[i]);
+     }, i * 600);
+  }
+
 }
 
 function checkAnswer(currentLevel) {
@@ -63,19 +68,9 @@ function checkAnswer(currentLevel) {
       }, 1000);
     }
   } else {
-    playSound("wrong");
-    playSound("no");
     playSound("fah");
+    playSound("wrong");
 
-    var vineBoomInterval = setInterval(function () {
-      var vineAudio = new Audio("./sounds/vine-boom.mp3");
-      vineAudio.play();
-    }, 300);
-
-    setTimeout(function () {
-      clearInterval(vineBoomInterval);
-      $(".insult-banner").remove();
-    }, 3000);
 
     $("body").addClass("game-over");
     setTimeout(function () {
